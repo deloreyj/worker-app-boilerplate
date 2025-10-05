@@ -18,19 +18,27 @@
 		"react-dom": "19.0.0"
 	},
 	"devDependencies": {
-		"@cloudflare/vite-plugin": "1.7.5",
+		"@cloudflare/vite-plugin": "1.13.10",
+		"@cloudflare/vitest-pool-workers": "^0.9.10",
 		"@eslint/js": "9.29.0",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.0",
+		"@testing-library/user-event": "^14.6.1",
 		"@types/node": "^24.0.4",
 		"@types/react": "19.0.10",
 		"@types/react-dom": "19.0.4",
 		"@vitejs/plugin-react": "5.0.0",
+		"@vitest/ui": "^3.2.4",
 		"eslint": "9.27.0",
 		"eslint-plugin-react-hooks": "5.2.0",
 		"eslint-plugin-react-refresh": "0.4.20",
 		"globals": "16.2.0",
+		"happy-dom": "^19.0.2",
+		"jsdom": "^27.0.0",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.35.0",
 		"vite": "^6.0.0",
+		"vitest": "~3.2.4",
 		"wrangler": "^4.42.0"
 	},
 	"scripts": {
@@ -40,7 +48,10 @@
 		"deploy": "wrangler deploy",
 		"dev": "vite",
 		"lint": "eslint .",
-		"preview": "npm run build && vite preview"
+		"preview": "npm run build && vite preview",
+		"test": "pnpm build && vitest run --config vitest.worker.config.ts && vitest run --config vitest.ui.config.ts",
+		"test:worker": "vitest --config vitest.worker.config.ts",
+		"test:ui": "vitest --config vitest.ui.config.ts"
 	},
 	"type": "module"
 }
