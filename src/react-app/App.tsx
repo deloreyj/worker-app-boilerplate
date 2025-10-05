@@ -2,20 +2,37 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
+import type { NameResponse, ApiResponse, User } from "../types/types";
 
 function App() {
 	const [count, setCount] = useState(0);
 	const [name, setName] = useState("unknown");
+	const [user, setUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleFetchName = async () => {
 		setIsLoading(true);
 		try {
 			const res = await fetch("/api/");
-			const data = (await res.json()) as { name: string };
+			const data = (await res.json()) as NameResponse;
 			setName(data.name);
 		} catch (error) {
 			console.error("Failed to fetch name:", error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const handleFetchUser = async () => {
+		setIsLoading(true);
+		try {
+			const res = await fetch("/api/user/123");
+			const data = (await res.json()) as ApiResponse<User>;
+			if (data.success && data.data) {
+				setUser(data.data);
+			}
+		} catch (error) {
+			console.error("Failed to fetch user:", error);
 		} finally {
 			setIsLoading(false);
 		}
@@ -60,16 +77,33 @@ function App() {
 						<p className="text-sm text-muted-foreground">
 							Fetch data from the Hono backend running on Cloudflare Workers
 						</p>
-						<div className="flex items-center gap-2">
+						<div className="flex flex-col gap-2">
 							<Button
 								onClick={handleFetchName}
 								aria-label="get name"
 								variant="outline"
 								disabled={isLoading}
-								className="flex-1"
 							>
 								{isLoading ? "Loading..." : `Name from API: ${name}`}
 							</Button>
+							<Button
+								onClick={handleFetchUser}
+								aria-label="get user"
+								variant="outline"
+								disabled={isLoading}
+							>
+								{isLoading ? "Loading..." : "Fetch User"}
+							</Button>
+							{user && (
+								<div className="rounded bg-muted p-3 text-sm">
+									<p><strong>ID:</strong> {user.id}</p>
+									<p><strong>Name:</strong> {user.name}</p>
+									<p><strong>Email:</strong> {user.email}</p>
+									<p className="text-xs text-muted-foreground mt-1">
+										Created: {new Date(user.createdAt).toLocaleString()}
+									</p>
+								</div>
+							)}
 						</div>
 						<p className="text-xs text-muted-foreground">
 							Edit <code className="rounded bg-muted px-1 py-0.5">src/worker/index.ts</code> to change the API response
