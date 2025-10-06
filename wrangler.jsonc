@@ -6,12 +6,17 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "worker-app-boilerplate",
 	"main": "./src/worker/index.ts",
-	"compatibility_date": "2025-04-01",
+	"compatibility_date": "2025-10-06",
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
 	"observability": {
-		"enabled": true
+		"traces": {
+			"enabled": true
+		},
+		"logs": {
+			"enabled": true
+		}
 	},
 	"upload_source_maps": true,
 	"assets": {
