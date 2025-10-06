@@ -1,0 +1,207 @@
+# AGENTS.md
+
+This file provides guidance to AI coding assistants when working with code in this repository.
+
+## Project Overview
+
+This is a full-stack application built with React, Vite, Hono, and Cloudflare Workers. It combines a modern React frontend with an edge-computed backend, all deployable to Cloudflare's global network.
+
+**Key Technologies:**
+- **React 19** - Frontend UI library
+- **Vite** - Build tool and dev server
+- **Hono** - Lightweight backend framework running on Cloudflare Workers
+- **Cloudflare Workers** - Edge runtime environment
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **shadcn/ui** - Component library built on Radix UI
+- **Vitest** - Testing framework (3 separate test suites)
+- **Storybook 9** - Component development environment
+
+## Architecture
+
+### Dual-Context Build System
+
+The project uses a **split compilation model** with three separate TypeScript contexts:
+
+1. **React App** (`src/react-app/`) - Client-side React application
+2. **Worker** (`src/worker/`) - Cloudflare Workers backend (Hono API)
+3. **Shared Code** (`src/components/`, `src/lib/`, `src/hooks/`) - Reusable UI components and utilities
+
+**TypeScript Configurations:**
+- `tsconfig.json` - Root config with project references
+- `tsconfig.app.json` - React app config, includes: `src/react-app`, `src/components`, `src/hooks`, `src/lib`, `src/stories`
+- `tsconfig.worker.json` - Worker backend config, includes: `src/worker`
+- `tsconfig.node.json` - Node/build tooling config
+
+**Important:** When adding new directories under `src/`, update `tsconfig.app.json`'s `include` array to ensure TypeScript can resolve the `@/*` path aliases.
+
+### Build Output Structure
+
+- `dist/client/` - Static React assets (served via Workers Assets)
+- `dist/worker/` - Compiled Worker code
+- The Worker serves the React app and handles API routes under `/api/*`
+
+### Path Aliases
+
+All imports use the `@/*` alias pointing to `src/`:
+```typescript
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+```
+
+## Development Commands
+
+### Primary Workflows
+
+```bash
+# Development server (both frontend and backend)
+pnpm dev
+# Runs on http://localhost:5173
+
+# Storybook (component development)
+pnpm storybook
+# Runs on http://localhost:6006
+
+# Type checking and dry-run deploy
+pnpm check
+
+# Lint code
+pnpm lint
+```
+
+### Testing
+
+The project has **three separate test suites** with dedicated configs:
+
+```bash
+# Run all tests (builds first, then runs all 3 suites)
+pnpm test
+
+# Run individual test suites
+pnpm test:worker    # Backend/API tests (vitest.worker.config.ts)
+pnpm test:ui        # React component tests (vitest.ui.config.ts)
+pnpm test:storybook # Storybook component tests (vitest.storybook.config.ts)
+```
+
+### Deployment
+
+```bash
+# Build for production
+pnpm build
+
+# Preview production build locally
+pnpm preview
+
+# Deploy to Cloudflare Workers
+pnpm deploy
+
+# Monitor deployed worker
+npx wrangler tail
+```
+
+## Storybook Guidelines
+
+### Story Requirements
+
+**ALWAYS write a Storybook story for any UI component.** Stories should:
+
+1. Import from `@storybook/react-vite` (not `@storybook/react`)
+2. Use `storybook/test` for test utilities (not `@storybook/test`)
+3. Include `tags: ["autodocs"]` for automatic documentation
+4. Be located in `src/stories/` directory
+
+Example story structure:
+```typescript
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { MyComponent } from "@/components/MyComponent";
+
+const meta = {
+  title: "Category/MyComponent",
+  component: MyComponent,
+  parameters: { layout: "centered" }, // or "fullscreen" for layouts
+  tags: ["autodocs"],
+} satisfies Meta<typeof MyComponent>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: { /* props */ },
+};
+```
+
+## Component Development
+
+This project uses component-driven development with shadcn/ui components.
+
+### shadcn/ui Components
+
+To add new components:
+
+```bash
+pnpm dlx shadcn@latest add <component-name>
+```
+
+Components are installed to `src/components/ui/` and can be customized directly.
+
+### Layout Components
+
+Reusable layout components are in `src/components/layouts/`. These should be:
+- Generic and reusable
+- Accept configuration via props (e.g., `sidebarItems` for `TwoColumnLayout`)
+- Have corresponding Storybook stories
+
+### Styling
+
+- Uses Tailwind CSS v4 with `@tailwindcss/vite` plugin
+- Dark mode support via `theme-provider.tsx` component
+- Custom CSS variables defined in `src/react-app/index.css`
+- Use `cn()` utility from `@/lib/utils` for conditional classes
+
+## API Development
+
+### Backend Structure
+
+Backend code lives in `src/worker/` using Hono for routing:
+
+```typescript
+// src/worker/index.ts
+import { Hono } from "hono";
+
+const app = new Hono<{ Bindings: Env }>();
+
+app.get("/api/endpoint", (c) => {
+  return c.json({ data: "response" });
+});
+```
+
+### Shared Types
+
+Type definitions in `src/types/types.ts` are shared between frontend and backend:
+- `ApiResponse<T>` - Standard API response wrapper
+- Add domain types here for end-to-end type safety
+
+## Cloudflare Workers Configuration
+
+Configuration in `wrangler.jsonc`:
+- `main` - Entry point: `src/worker/index.ts`
+- `assets.directory` - Static assets: `dist/client`
+- `assets.not_found_handling` - SPA mode enabled
+- `observability.enabled` - Built-in monitoring enabled
+- `compatibility_flags: ["nodejs_compat"]` - Node.js compatibility enabled
+
+### Environment-Specific Config
+
+Use `env.staging` or `env.production` blocks in `wrangler.jsonc` for environment-specific settings. This project has no top-level environment. Any wrangler command needs to be scoped to an environment, typically `staging`.
+
+If you ever need to make changes to the `production` environment, then you should manually verify every command with the user to ensure we don't break prod.
+
+## Important Notes
+
+- **Package Manager:** This project uses `pnpm`, not `npm`
+- **React Version:** Using React 19 (check compatibility with libraries)
+- **Build Before Deploy:** Always run `pnpm build` before `pnpm deploy`
+- **Hot Module Replacement:** Available in dev mode for rapid iteration
+- **Type Generation:** Run `pnpm cf-typegen` to generate Cloudflare bindings types
+- **Barrel Files:** Avoid barrel files wherever possible
+- **Prefer jsonc:** Use wrangler.jsonc over wrangler.toml or wrangler.json so we can include comments
+- **Maintain AI files:** whenever changes are made to the style guide, a new library is introduced, or major changes are made to the codebase, update CLAUDE.md and AGENTS.md so they are always relevant
