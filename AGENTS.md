@@ -176,7 +176,7 @@ app.get("/api/endpoint", (c) => {
 
 ### Shared Types
 
-Type definitions in `src/types/types.ts` are shared between frontend and backend:
+Type definitions in `src/types/` are shared between frontend and backend:
 - `ApiResponse<T>` - Standard API response wrapper
 - Add domain types here for end-to-end type safety
 
