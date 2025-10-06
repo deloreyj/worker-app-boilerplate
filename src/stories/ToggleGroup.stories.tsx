@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta } from "@storybook/react-vite";
 import { Bold, Italic, Underline } from "lucide-react";
 import {
   ToggleGroup,
@@ -15,9 +15,8 @@ const meta = {
 } satisfies Meta<typeof ToggleGroup>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
   render: () => (
     <ToggleGroup variant="outline" type="multiple">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
@@ -33,7 +32,7 @@ export const Default: Story = {
   ),
 };
 
-export const Single: Story = {
+export const Single = {
   render: () => (
     <ToggleGroup variant="outline" type="single">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
@@ -49,7 +48,7 @@ export const Single: Story = {
   ),
 };
 
-export const Multiple: Story = {
+export const Multiple = {
   render: () => (
     <ToggleGroup type="multiple">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
@@ -65,7 +64,7 @@ export const Multiple: Story = {
   ),
 };
 
-export const WithText: Story = {
+export const WithText = {
   render: () => (
     <ToggleGroup variant="outline" type="single">
       <ToggleGroupItem value="left" aria-label="Align left">
@@ -81,7 +80,7 @@ export const WithText: Story = {
   ),
 };
 
-export const Disabled: Story = {
+export const Disabled = {
   render: () => (
     <ToggleGroup variant="outline" type="single" disabled>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">

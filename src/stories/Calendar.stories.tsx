@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+import type { DateRange } from "react-day-picker";
 import { Calendar } from "@/components/ui/calendar";
 
 const meta = {
@@ -62,7 +63,7 @@ export const Multiple: Story = {
 
 export const Range: Story = {
   render: function Render() {
-    const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({});
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
     return (
       <Calendar

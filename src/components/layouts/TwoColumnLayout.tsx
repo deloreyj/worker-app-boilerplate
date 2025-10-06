@@ -2,11 +2,6 @@
 
 import * as React from "react"
 import {
-  CalendarIcon,
-  HomeIcon,
-  InboxIcon,
-  SearchIcon,
-  SettingsIcon,
   Aperture,
 } from "lucide-react"
 

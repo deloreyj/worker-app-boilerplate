@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta } from "@storybook/react-vite";
 import { Bar, BarChart, CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
@@ -39,9 +39,9 @@ const meta = {
 } satisfies Meta<typeof ChartContainer>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const BarChart_: Story = {
+export const BarChart_ = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <BarChart accessibilityLayer data={chartData}>
@@ -52,7 +52,8 @@ export const BarChart_: Story = {
   ),
 };
 
-export const BarChartWithAxis: Story = {
+export const BarChartWithAxis = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <BarChart accessibilityLayer data={chartData}>
@@ -71,7 +72,8 @@ export const BarChartWithAxis: Story = {
   ),
 };
 
-export const BarChartWithTooltip: Story = {
+export const BarChartWithTooltip = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <BarChart accessibilityLayer data={chartData}>
@@ -91,7 +93,8 @@ export const BarChartWithTooltip: Story = {
   ),
 };
 
-export const BarChartWithLegend: Story = {
+export const BarChartWithLegend = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <BarChart accessibilityLayer data={chartData}>
@@ -112,7 +115,8 @@ export const BarChartWithLegend: Story = {
   ),
 };
 
-export const LineChart_: Story = {
+export const LineChart_ = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <LineChart accessibilityLayer data={chartData}>
@@ -144,7 +148,8 @@ export const LineChart_: Story = {
   ),
 };
 
-export const LineChartWithDots: Story = {
+export const LineChartWithDots = {
+  args: {},
   render: () => (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
       <LineChart accessibilityLayer data={chartData}>

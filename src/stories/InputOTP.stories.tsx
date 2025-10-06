@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta } from "@storybook/react-vite";
 import {
   InputOTP,
   InputOTPGroup,
@@ -16,9 +16,8 @@ const meta = {
 } satisfies Meta<typeof InputOTP>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTPGroup>
@@ -36,7 +35,7 @@ export const Default: Story = {
   ),
 };
 
-export const FourDigits: Story = {
+export const FourDigits = {
   render: () => (
     <InputOTP maxLength={4}>
       <InputOTPGroup>
@@ -49,7 +48,7 @@ export const FourDigits: Story = {
   ),
 };
 
-export const WithoutSeparator: Story = {
+export const WithoutSeparator = {
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTPGroup>

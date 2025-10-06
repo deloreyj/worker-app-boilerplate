@@ -85,7 +85,7 @@ export const Warning: Story = {
   ),
 };
 
-export const Promise: Story = {
+export const WithPromise: Story = {
   render: () => (
     <Button
       variant="outline"

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta } from "@storybook/react-vite";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -15,9 +15,8 @@ const meta = {
 } satisfies Meta<typeof ResizablePanelGroup>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
   render: () => (
     <ResizablePanelGroup
       direction="horizontal"
@@ -48,7 +47,7 @@ export const Default: Story = {
   ),
 };
 
-export const WithHandle: Story = {
+export const WithHandle = {
   render: () => (
     <ResizablePanelGroup
       direction="horizontal"
@@ -79,7 +78,7 @@ export const WithHandle: Story = {
   ),
 };
 
-export const Vertical: Story = {
+export const Vertical = {
   render: () => (
     <ResizablePanelGroup
       direction="vertical"

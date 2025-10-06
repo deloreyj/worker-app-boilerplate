@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta } from "@storybook/react-vite";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -31,9 +31,7 @@ const formSchema = z.object({
     message: "Please enter a valid email address.",
   }),
   bio: z.string().max(160).min(4),
-  role: z.string({
-    required_error: "Please select a role.",
-  }),
+  role: z.string().min(1, "Please select a role."),
   terms: z.boolean().refine((val) => val === true, {
     message: "You must accept the terms and conditions.",
   }),
@@ -49,9 +47,9 @@ const meta = {
 } satisfies Meta<typeof Form>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default = {
+  args: {},
   render: function Render() {
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
@@ -59,6 +57,7 @@ export const Default: Story = {
         username: "",
         email: "",
         bio: "",
+        role: "",
         terms: false,
       },
     });
@@ -170,7 +169,7 @@ export const Default: Story = {
   },
 };
 
-export const Simple: Story = {
+export const Simple = {
   render: function Render() {
     const simpleSchema = z.object({
       name: z.string().min(1, "Name is required"),
