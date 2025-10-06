@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { z } from "zod/v4";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,7 +27,7 @@ const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  email: z.string().email({
+  email: z.email({
     message: "Please enter a valid email address.",
   }),
   bio: z.string().max(160).min(4),
@@ -173,7 +173,7 @@ export const Simple = {
   render: function Render() {
     const simpleSchema = z.object({
       name: z.string().min(1, "Name is required"),
-      email: z.string().email("Invalid email address"),
+      email: z.email("Invalid email address"),
     });
 
     const form = useForm<z.infer<typeof simpleSchema>>({
