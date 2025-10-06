@@ -29,7 +29,7 @@ export const Large: Story = {
 export const InButton: Story = {
   render: () => (
     <Button disabled>
-      <Spinner size="sm" />
+      <Spinner />
       Loading...
     </Button>
   ),
