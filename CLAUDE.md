@@ -134,11 +134,63 @@ export const Default: Story = {
 After modifying any UI component or story, **ALWAYS provide story URLs** to the user using the `mcp__storybook-mcp__get_story_urls` tool. This allows immediate visual inspection of changes.
 
 ## Component Development
-This project uses component-driven development on the UI. You have two mcp servers to aid in development:
-- The storybook mcp server (`storybook-mcp`) provides a `get_ui_building_instructions` tool that can be used to get instructions on how to build a UI component
-- The shadcn mcp server (`shadcn`) provides tools to `search_items_in_registries` to find components and `get_item_examples_from_registries` to get examples of how to use them. The examples are particularly useful for seeding our stories.
 
-Any time you need to build a new component, you should begin by using the `get_ui_building_instructions` tool to get instructions on how to build a UI component. Then, you should use the `search_items_in_registries` tool to find components and `get_item_examples_from_registries` to get examples of how to use them. This will ensure that you are building components that are in-line with our design system.
+This project uses component-driven development with a systematic workflow to ensure consistency and reusability.
+
+### Frontend Component Development Workflow
+
+When working on UI components, follow this progressive workflow:
+
+**1. Understand Requirements**
+- Clarify design requirements (responsive behavior, accessibility needs, variants needed)
+- Identify the component's purpose and scope
+- Determine if this is a standalone component, variant, or composition
+
+**2. Check Existing Components**
+Review existing component files and Storybook stories:
+- **Component exists?** → Use it directly
+- **Can compose from existing?** → Compose new component from existing ones + document the pattern
+- **Can add variant?** → Extend existing component + update stories
+  - Variant criteria: Shares base structure/behavior, won't make component too complex, semantically the same
+
+**3. Check shadcn Registry (MCP Tool)**
+If no existing solution, search the shadcn registry:
+- Use `search_items_in_registries` to find components
+- Use `get_item_examples_from_registries` to get usage examples
+- **Found viable option?** → Install via `pnpm dlx shadcn@latest add <component-name>` + create stories
+- **Not found?** → Discuss bespoke component approach with user
+
+**4. After Any Addition/Modification**
+Always complete these steps:
+- Update or create Storybook stories with all variants
+- Add Playwright visual/interaction tests in Storybook
+- Add Vitest unit tests for component logic (if applicable)
+- Run test suites to verify (`pnpm test:storybook`, `pnpm test:ui`)
+- Update CLAUDE.md if new pattern is established
+- Provide story URLs to user via `mcp__storybook-mcp__get_story_urls` for review
+
+### MCP Servers for Component Development
+
+You have two MCP servers to aid in development:
+- **storybook-mcp**: Provides `get_ui_building_instructions` for component development guidance
+- **shadcn**: Provides `search_items_in_registries` and `get_item_examples_from_registries` for finding and using shadcn components
+
+### Testing Strategy
+
+**Storybook Tests (vitest.storybook.config.ts)**
+- Visual regression tests via Playwright
+- Component interaction tests
+- Run with: `pnpm test:storybook`
+
+**UI Unit Tests (vitest.ui.config.ts)**
+- Component unit tests (props, events, edge cases)
+- React component logic testing
+- Run with: `pnpm test:ui`
+
+**Integration Tests**
+- User flows across multiple components
+- End-to-end scenarios
+- Included in UI test suite
 
 ### shadcn/ui Components
 

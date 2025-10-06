@@ -131,7 +131,36 @@ export const Default: Story = {
 
 ## Component Development
 
-This project uses component-driven development with shadcn/ui components.
+This project uses component-driven development with a systematic workflow to ensure consistency and reusability.
+
+### Frontend Component Development Workflow
+
+When working on UI components, follow this progressive workflow:
+
+**1. Understand Requirements**
+- Clarify design requirements (responsive behavior, accessibility needs, variants needed)
+- Identify the component's purpose and scope
+- Determine if this is a standalone component, variant, or composition
+
+**2. Check Existing Components**
+Review existing component files and Storybook stories:
+- **Component exists?** → Use it directly
+- **Can compose from existing?** → Compose new component from existing ones + document the pattern
+- **Can add variant?** → Extend existing component + update stories
+  - Variant criteria: Shares base structure/behavior, won't make component too complex, semantically the same
+
+**3. Check shadcn Registry**
+If no existing solution, search the shadcn registry for viable components:
+- **Found viable option?** → Install via `pnpm dlx shadcn@latest add <component-name>` + create stories
+- **Not found?** → Discuss bespoke component approach with user
+
+**4. After Any Addition/Modification**
+Always complete these steps:
+- Update or create Storybook stories with all variants
+- Add Playwright visual/interaction tests in Storybook
+- Add Vitest unit tests for component logic (if applicable)
+- Run test suites to verify (`pnpm test:storybook`, `pnpm test:ui`)
+- Update AGENTS.md if new pattern is established
 
 ### shadcn/ui Components
 
@@ -142,6 +171,23 @@ pnpm dlx shadcn@latest add <component-name>
 ```
 
 Components are installed to `src/components/ui/` and can be customized directly.
+
+### Testing Strategy
+
+**Storybook Tests (vitest.storybook.config.ts)**
+- Visual regression tests via Playwright
+- Component interaction tests
+- Run with: `pnpm test:storybook`
+
+**UI Unit Tests (vitest.ui.config.ts)**
+- Component unit tests (props, events, edge cases)
+- React component logic testing
+- Run with: `pnpm test:ui`
+
+**Integration Tests**
+- User flows across multiple components
+- End-to-end scenarios
+- Included in UI test suite
 
 ### Layout Components
 
