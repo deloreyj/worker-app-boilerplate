@@ -15,14 +15,14 @@ describe("App component", () => {
 		const user = userEvent.setup();
 		render(<App />);
 		const button = screen.getByRole("button", { name: /increment/i });
-		expect(button).toHaveTextContent("count is 0");
+		expect(button).toHaveTextContent("Count is 0");
 		await user.click(button);
-		expect(button).toHaveTextContent("count is 1");
+		expect(button).toHaveTextContent("Count is 1");
 	});
 
 	it("displays initial name as unknown", () => {
 		render(<App />);
 		const button = screen.getByRole("button", { name: /get name/i });
-		expect(button).toHaveTextContent("Name from API is: unknown");
+		expect(button).toHaveTextContent("Name from API: unknown");
 	});
 });

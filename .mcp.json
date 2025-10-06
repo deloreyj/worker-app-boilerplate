@@ -8,10 +8,16 @@
       ]
     },
     "cloudflare-docs": {
+      "type": "sse",
       "url": "https://docs.mcp.cloudflare.com/sse"
     },
     "cloudflare-bindings": {
+      "type": "sse",
       "url": "https://bindings.mcp.cloudflare.com/sse"
+    },
+    "storybook-mcp": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
     }
   }
 }
