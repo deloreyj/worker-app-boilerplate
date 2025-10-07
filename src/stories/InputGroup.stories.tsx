@@ -19,6 +19,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6 w-full max-w-sm">
+      <InputGroup>
+        <InputGroupInput placeholder="Search..." />
+        <InputGroupAddon>
+          <Search />
+        </InputGroupAddon>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupAddon>
+          <Mail />
+        </InputGroupAddon>
+        <InputGroupInput placeholder="email@example.com" />
+      </InputGroup>
+      <InputGroup>
+        <InputGroupInput placeholder="example.com" />
+        <InputGroupAddon>
+          <InputGroupText>https://</InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupAddon>
+          <Lock />
+        </InputGroupAddon>
+        <InputGroupInput type="password" placeholder="Password" />
+      </InputGroup>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <InputGroup className="w-full max-w-sm">

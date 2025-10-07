@@ -19,6 +19,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8 w-full max-w-md">
+      <div>
+        <p className="text-sm font-medium mb-2">0% Progress</p>
+        <Progress value={0} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">33% Progress</p>
+        <Progress value={33} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">66% Progress</p>
+        <Progress value={66} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">100% Progress</p>
+        <Progress value={100} />
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: function Render() {
     const [progress, setProgress] = useState(13);

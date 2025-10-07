@@ -13,6 +13,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Single key:</span>
+        <Kbd>Ctrl</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Mac modifiers:</span>
+        <KbdGroup>
+          <Kbd>⌘</Kbd>
+          <Kbd>⇧</Kbd>
+          <Kbd>⌥</Kbd>
+          <Kbd>⌃</Kbd>
+        </KbdGroup>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Shortcut:</span>
+        <KbdGroup>
+          <Kbd>Ctrl</Kbd>
+          <span>+</span>
+          <Kbd>C</Kbd>
+        </KbdGroup>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Arrow keys:</span>
+        <KbdGroup>
+          <Kbd>↑</Kbd>
+          <Kbd>↓</Kbd>
+          <Kbd>←</Kbd>
+          <Kbd>→</Kbd>
+        </KbdGroup>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => <Kbd>Ctrl</Kbd>,
 };

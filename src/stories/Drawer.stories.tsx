@@ -25,6 +25,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Drawer (Bottom)</Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <div className="mx-auto w-full max-w-sm">
+            <DrawerHeader>
+              <DrawerTitle>Edit Profile</DrawerTitle>
+              <DrawerDescription>
+                Make changes to your profile here.
+              </DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Pedro Duarte" />
+            </div>
+            <DrawerFooter>
+              <Button>Submit</Button>
+              <DrawerClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Drawer>

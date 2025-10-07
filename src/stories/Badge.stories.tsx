@@ -20,6 +20,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Badge>Badge</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   args: {
     children: "Badge",
@@ -45,17 +56,6 @@ export const Outline: Story = {
     variant: "outline",
     children: "Outline",
   },
-};
-
-export const AllVariants: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
-      <Badge>Badge</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
-    </div>
-  ),
 };
 
 export const WithIcon: Story = {

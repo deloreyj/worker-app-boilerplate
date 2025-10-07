@@ -18,6 +18,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Default Tooltip</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Add to library</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button>On Primary Button</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This is a helpful tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="link">On Link</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Links can have tooltips too</p>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Tooltip>

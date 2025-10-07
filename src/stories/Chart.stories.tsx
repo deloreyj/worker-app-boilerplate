@@ -40,6 +40,62 @@ const meta = {
 
 export default meta;
 
+export const AllVariants = {
+  args: {},
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div>
+        <p className="text-sm font-medium mb-4">Bar Chart</p>
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
+          <BarChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+          </BarChart>
+        </ChartContainer>
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-4">Line Chart</p>
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full max-w-[500px]">
+          <LineChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <Line
+              dataKey="desktop"
+              type="monotone"
+              stroke="var(--color-desktop)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="mobile"
+              type="monotone"
+              stroke="var(--color-mobile)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+      </div>
+    </div>
+  ),
+};
+
 export const BarChart_ = {
   args: {},
   render: () => (

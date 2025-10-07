@@ -73,6 +73,94 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8 p-4">
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">Basic sidebar:</p>
+        <div className="h-[300px] w-full rounded-md border">
+          <SidebarProvider>
+            <Sidebar>
+              <SidebarContent>
+                <SidebarGroup>
+                  <SidebarGroupLabel>Application</SidebarGroupLabel>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {items.slice(0, 3).map((item) => (
+                        <SidebarMenuItem key={item.title}>
+                          <SidebarMenuButton asChild>
+                            <a href={item.url}>
+                              <item.icon />
+                              <span>{item.title}</span>
+                            </a>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              </SidebarContent>
+            </Sidebar>
+            <SidebarInset>
+              <div className="flex h-full items-center justify-center">
+                <p className="text-sm text-muted-foreground">Main content area</p>
+              </div>
+            </SidebarInset>
+          </SidebarProvider>
+        </div>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">With header:</p>
+        <div className="h-[300px] w-full rounded-md border">
+          <SidebarProvider>
+            <Sidebar>
+              <SidebarHeader>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton size="lg" asChild>
+                      <a href="#">
+                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                          <Home className="size-4" />
+                        </div>
+                        <div className="grid flex-1 text-left text-sm leading-tight">
+                          <span className="truncate font-semibold">My App</span>
+                        </div>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarHeader>
+              <SidebarContent>
+                <SidebarGroup>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {items.slice(0, 3).map((item) => (
+                        <SidebarMenuItem key={item.title}>
+                          <SidebarMenuButton asChild>
+                            <a href={item.url}>
+                              <item.icon />
+                              <span>{item.title}</span>
+                            </a>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              </SidebarContent>
+            </Sidebar>
+            <SidebarInset>
+              <div className="flex h-full items-center justify-center">
+                <p className="text-sm text-muted-foreground">Main content area</p>
+              </div>
+            </SidebarInset>
+          </SidebarProvider>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <SidebarProvider>

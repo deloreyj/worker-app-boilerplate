@@ -23,6 +23,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6 w-full max-w-sm">
+      <div>
+        <Label htmlFor="text">Text Input</Label>
+        <Input id="text" type="text" placeholder="Enter text" />
+      </div>
+      <div>
+        <Label htmlFor="email-all">Email Input</Label>
+        <Input id="email-all" type="email" placeholder="email@example.com" />
+      </div>
+      <div>
+        <Label htmlFor="password">Password Input</Label>
+        <Input id="password" type="password" placeholder="Enter password" />
+      </div>
+      <div>
+        <Label htmlFor="number">Number Input</Label>
+        <Input id="number" type="number" placeholder="0" />
+      </div>
+      <div>
+        <Label htmlFor="disabled">Disabled Input</Label>
+        <Input id="disabled" type="text" placeholder="Disabled" disabled />
+      </div>
+      <div>
+        <Label htmlFor="file">File Input</Label>
+        <Input id="file" type="file" />
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   args: {
     type: "email",

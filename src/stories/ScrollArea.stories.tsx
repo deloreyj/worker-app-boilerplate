@@ -18,6 +18,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-8">
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">With separators:</p>
+        <ScrollArea className="h-72 w-48 rounded-md border">
+          <div className="p-4">
+            <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+            {tags.slice(0, 20).map((tag) => (
+              <div key={tag}>
+                <div className="text-sm">{tag}</div>
+                <Separator className="my-2" />
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">Simple list:</p>
+        <ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+          <div className="space-y-4">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="text-sm">
+                Item {i + 1}
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <ScrollArea className="h-72 w-48 rounded-md border">

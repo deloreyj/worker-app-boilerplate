@@ -17,6 +17,49 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div className="flex items-center gap-4">
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <span className="text-sm">With Image</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Avatar>
+          <AvatarImage src="https://invalid-url.example.com" alt="Invalid" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+        <span className="text-sm">Fallback Only</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Avatar className="rounded-lg">
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <span className="text-sm">Rounded</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src="https://github.com/shadcn.png" alt="Small" />
+          <AvatarFallback>SM</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="Medium" />
+          <AvatarFallback>MD</AvatarFallback>
+        </Avatar>
+        <Avatar className="h-16 w-16">
+          <AvatarImage src="https://github.com/shadcn.png" alt="Large" />
+          <AvatarFallback>LG</AvatarFallback>
+        </Avatar>
+        <span className="text-sm">Sizes</span>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Avatar>

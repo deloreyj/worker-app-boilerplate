@@ -17,6 +17,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div>
+        <p className="text-sm font-medium mb-4">Default</p>
+        <RadioGroup defaultValue="option-two">
+          <div className="flex items-center gap-3">
+            <RadioGroupItem value="option-one" id="v1" />
+            <Label htmlFor="v1">Option One</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <RadioGroupItem value="option-two" id="v2" />
+            <Label htmlFor="v2">Option Two (Selected)</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <RadioGroupItem value="option-three" id="v3" />
+            <Label htmlFor="v3">Option Three</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-4">With Disabled Option</p>
+        <RadioGroup defaultValue="enabled">
+          <div className="flex items-center gap-3">
+            <RadioGroupItem value="enabled" id="v4" />
+            <Label htmlFor="v4">Enabled</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <RadioGroupItem value="disabled" id="v5" disabled />
+            <Label htmlFor="v5">Disabled</Label>
+          </div>
+        </RadioGroup>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <RadioGroup defaultValue="comfortable">

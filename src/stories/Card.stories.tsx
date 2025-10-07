@@ -24,6 +24,42 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-6">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Full Card</CardTitle>
+          <CardDescription>With all sections</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>This card has a header, content, and footer.</p>
+        </CardContent>
+        <CardFooter>
+          <Button>Action</Button>
+        </CardFooter>
+      </Card>
+      <Card className="w-full max-w-sm">
+        <CardContent className="pt-6">
+          <p>Content Only</p>
+        </CardContent>
+      </Card>
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>With Action</CardTitle>
+          <CardDescription>Header with action button</CardDescription>
+          <CardAction>
+            <Button variant="link">Edit</Button>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <p>Card with action in header</p>
+        </CardContent>
+      </Card>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Card className="w-full max-w-sm">

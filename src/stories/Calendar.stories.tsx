@@ -15,6 +15,46 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: function Render() {
+    const [singleDate, setSingleDate] = useState<Date | undefined>(new Date());
+    const [multipleDates, setMultipleDates] = useState<Date[] | undefined>([]);
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
+
+    return (
+      <div className="flex flex-col gap-8">
+        <div>
+          <p className="text-sm font-medium mb-2">Single Selection</p>
+          <Calendar
+            mode="single"
+            selected={singleDate}
+            onSelect={setSingleDate}
+            className="rounded-md border"
+          />
+        </div>
+        <div>
+          <p className="text-sm font-medium mb-2">Multiple Selection</p>
+          <Calendar
+            mode="multiple"
+            selected={multipleDates}
+            onSelect={setMultipleDates}
+            className="rounded-md border"
+          />
+        </div>
+        <div>
+          <p className="text-sm font-medium mb-2">Range Selection</p>
+          <Calendar
+            mode="range"
+            selected={dateRange}
+            onSelect={setDateRange}
+            className="rounded-md border"
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
 export const Default: Story = {
   render: function Render() {
     const [date, setDate] = useState<Date | undefined>(new Date());

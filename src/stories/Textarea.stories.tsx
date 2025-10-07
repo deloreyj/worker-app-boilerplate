@@ -14,6 +14,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div className="grid w-full gap-1.5">
+        <Label>Default</Label>
+        <Textarea placeholder="Type your message here." />
+      </div>
+      <div className="grid w-full gap-1.5">
+        <Label htmlFor="with-label">With label and helper text</Label>
+        <Textarea placeholder="Type your message here." id="with-label" />
+        <p className="text-muted-foreground text-sm">
+          Your message will be copied to the support team.
+        </p>
+      </div>
+      <div className="grid w-full gap-1.5">
+        <Label>With value</Label>
+        <Textarea defaultValue="This is a default value in the textarea." />
+      </div>
+      <div className="grid w-full gap-1.5">
+        <Label>Disabled</Label>
+        <Textarea placeholder="Type your message here." disabled />
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   args: {
     placeholder: "Type your message here.",

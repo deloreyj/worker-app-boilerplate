@@ -14,6 +14,48 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => toast("Default toast")}
+      >
+        Default
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => toast.success("Success!")}
+      >
+        Success
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => toast.error("Error!")}
+      >
+        Error
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => toast.info("Info")}
+      >
+        Info
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => toast.warning("Warning")}
+      >
+        Warning
+      </Button>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Button
@@ -103,44 +145,3 @@ export const WithPromise: Story = {
   ),
 };
 
-export const AllTypes: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => toast("Default toast")}
-      >
-        Default
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => toast.success("Success!")}
-      >
-        Success
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => toast.error("Error!")}
-      >
-        Error
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => toast.info("Info")}
-      >
-        Info
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => toast.warning("Warning")}
-      >
-        Warning
-      </Button>
-    </div>
-  ),
-};

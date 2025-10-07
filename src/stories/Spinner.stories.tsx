@@ -14,6 +14,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div className="flex items-center gap-4">
+        <Spinner className="size-4" />
+        <span className="text-sm">Small</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Spinner />
+        <span className="text-sm">Default</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Spinner className="size-8" />
+        <span className="text-sm">Large</span>
+      </div>
+      <div className="flex items-center gap-4">
+        <Button disabled>
+          <Spinner />
+          Loading...
+        </Button>
+        <span className="text-sm">In Button</span>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => <Spinner />,
 };

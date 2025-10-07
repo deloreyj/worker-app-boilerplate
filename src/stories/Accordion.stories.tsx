@@ -17,6 +17,42 @@ const meta = {
 
 export default meta;
 
+export const AllVariants = {
+  args: {},
+  render: () => (
+    <div className="flex flex-col gap-8 w-full max-w-xl">
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Single Collapsible</AccordionTrigger>
+          <AccordionContent>
+            A single collapsible accordion that closes when another item opens.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Second Item</AccordionTrigger>
+          <AccordionContent>
+            Only one item can be open at a time with single type.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      <Accordion type="multiple" className="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Multiple Selection</AccordionTrigger>
+          <AccordionContent>
+            Multiple type allows several items to be open simultaneously.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Another Item</AccordionTrigger>
+          <AccordionContent>
+            All items can be open at the same time with multiple type.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  ),
+};
+
 export const Default = {
   args: {},
   render: () => (

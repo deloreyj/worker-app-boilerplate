@@ -14,6 +14,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center gap-3">
+        <Checkbox id="state-1" />
+        <Label htmlFor="state-1">Unchecked</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox id="state-2" defaultChecked />
+        <Label htmlFor="state-2">Checked</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox id="state-3" disabled />
+        <Label htmlFor="state-3">Disabled</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox id="state-4" disabled defaultChecked />
+        <Label htmlFor="state-4">Disabled Checked</Label>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <div className="flex items-center gap-3">
@@ -72,28 +95,5 @@ export const StyledCard: Story = {
         </p>
       </div>
     </Label>
-  ),
-};
-
-export const AllStates: Story = {
-  render: () => (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-3">
-        <Checkbox id="state-1" />
-        <Label htmlFor="state-1">Unchecked</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <Checkbox id="state-2" defaultChecked />
-        <Label htmlFor="state-2">Checked</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <Checkbox id="state-3" disabled />
-        <Label htmlFor="state-3">Disabled</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <Checkbox id="state-4" disabled defaultChecked />
-        <Label htmlFor="state-4">Disabled Checked</Label>
-      </div>
-    </div>
   ),
 };

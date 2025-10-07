@@ -15,6 +15,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div>
+        <p className="text-sm font-medium mb-2">Horizontal</p>
+        <ButtonGroup>
+          <Button variant="outline">Left</Button>
+          <Button variant="outline">Middle</Button>
+          <Button variant="outline">Right</Button>
+        </ButtonGroup>
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">Vertical</p>
+        <ButtonGroup orientation="vertical">
+          <Button variant="outline">First</Button>
+          <Button variant="outline">Second</Button>
+          <Button variant="outline">Third</Button>
+        </ButtonGroup>
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Icons</p>
+        <ButtonGroup>
+          <Button variant="outline" size="icon">
+            <Bold className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Italic className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Underline className="h-4 w-4" />
+          </Button>
+        </ButtonGroup>
+      </div>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <ButtonGroup>

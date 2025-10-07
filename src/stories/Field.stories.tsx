@@ -32,6 +32,35 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8 w-full max-w-md">
+      <Field>
+        <FieldLabel htmlFor="name-1">Simple Field</FieldLabel>
+        <Input id="name-1" placeholder="Enter your name" />
+      </Field>
+      <Field>
+        <FieldLabel htmlFor="email-1">Field with Description</FieldLabel>
+        <Input id="email-1" type="email" placeholder="email@example.com" />
+        <FieldDescription>We'll never share your email.</FieldDescription>
+      </Field>
+      <FieldSet>
+        <FieldLegend>FieldSet with Multiple Fields</FieldLegend>
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="first">First Name</FieldLabel>
+            <Input id="first" placeholder="John" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="last">Last Name</FieldLabel>
+            <Input id="last" placeholder="Doe" />
+          </Field>
+        </FieldGroup>
+      </FieldSet>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <div className="w-full max-w-md">

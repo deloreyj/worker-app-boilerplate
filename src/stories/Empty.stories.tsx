@@ -22,6 +22,52 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-12">
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia>
+            <FileText className="h-12 w-12" />
+          </EmptyMedia>
+          <EmptyTitle>No files found</EmptyTitle>
+          <EmptyDescription>
+            You don't have any files yet. Upload your first file to get started.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button>Upload File</Button>
+        </EmptyContent>
+      </Empty>
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia>
+            <Search className="h-12 w-12" />
+          </EmptyMedia>
+          <EmptyTitle>No results</EmptyTitle>
+          <EmptyDescription>
+            We couldn't find anything matching your search.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button variant="outline">Clear search</Button>
+        </EmptyContent>
+      </Empty>
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia>
+            <Inbox className="h-12 w-12" />
+          </EmptyMedia>
+          <EmptyTitle>All caught up!</EmptyTitle>
+          <EmptyDescription>
+            You have no pending notifications.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
+    </div>
+  ),
+};
+
 export const Default: Story = {
   render: () => (
     <Empty>

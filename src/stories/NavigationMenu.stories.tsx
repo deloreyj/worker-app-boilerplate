@@ -21,6 +21,55 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">With dropdown content:</p>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 w-[400px]">
+                  <ListItem href="/products/1" title="Product 1">
+                    Description for product 1
+                  </ListItem>
+                  <ListItem href="/products/2" title="Product 2">
+                    Description for product 2
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">Simple links:</p>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="/" className={navigationMenuTriggerStyle()}>
+                Home
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="/about" className={navigationMenuTriggerStyle()}>
+                About
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="/contact" className={navigationMenuTriggerStyle()}>
+                Contact
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </div>
+  ),
+};
+
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
